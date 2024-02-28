@@ -25,6 +25,10 @@ public class Customer {
 	@Column(nullable = false)
 	private String password;
 
+//	@JsonManagedReference
+//	@OneToOne
+//	private Basket basket;
+
 	public Customer() {
 
 	}

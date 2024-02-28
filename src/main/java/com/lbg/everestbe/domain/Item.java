@@ -1,10 +1,13 @@
 package com.lbg.everestbe.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Item {
@@ -18,6 +21,10 @@ public class Item {
 	private Double price;
 	@Column(nullable = false)
 	private Long quantity;
+
+	@JsonBackReference
+	@ManyToOne
+	private Basket basket;
 
 	public Item() {
 	}
@@ -115,6 +122,14 @@ public class Item {
 		} else if (!quantity.equals(other.quantity))
 			return false;
 		return true;
+	}
+
+	public Basket getBasket() {
+		return basket;
+	}
+
+	public void setBasket(Basket basket) {
+		this.basket = basket;
 	}
 
 }
