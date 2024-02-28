@@ -24,7 +24,7 @@ public class Item {
 
 	@JsonBackReference
 	@ManyToOne
-	private Basket basket;
+	private Customer customer;
 
 	public Item() {
 	}
@@ -124,12 +124,12 @@ public class Item {
 		return true;
 	}
 
-	public Basket getBasket() {
-		return basket;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setBasket(Basket basket) {
-		this.basket = basket;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

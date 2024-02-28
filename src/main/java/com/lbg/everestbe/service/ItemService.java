@@ -8,14 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.lbg.everestbe.domain.Item;
-import com.lbg.everestbe.repo.BasketRepo;
+import com.lbg.everestbe.repo.CustomerRepo;
 import com.lbg.everestbe.repo.ItemRepo;
 
 @Service
 public class ItemService {
 
 	private ItemRepo repo;
-	private BasketRepo basketRepo;
+	private CustomerRepo customerRepo;
 
 	public ItemService(ItemRepo repo) {
 		super();
@@ -68,7 +68,7 @@ public class ItemService {
 		return ResponseEntity.ok(updated);
 	}
 
-	public ResponseEntity<Item> updateItem(int id, int basketId) {
+	public ResponseEntity<Item> updateItem(int id, int customerId) {
 		Optional<Item> found = this.repo.findById(id);
 
 		if (found.isEmpty()) {
@@ -76,7 +76,7 @@ public class ItemService {
 		}
 		Item body = found.get();
 
-		body.setBasket(this.basketRepo.findById(basketId).get());
+		body.setCustomer(this.customerRepo.findById(customerId).get());
 		return ResponseEntity.ok(this.repo.save(body));
 	}
 
