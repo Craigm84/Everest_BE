@@ -50,9 +50,9 @@ public class ItemController {
 	}
 
 	@PatchMapping("/update/{id}")
-	public ResponseEntity<Item> updatItem(@PathVariable int id, @PathVariable int basketId) {
+	public ResponseEntity<Item> updateItem(@PathVariable int id, @RequestBody Item updateItem) {
 
-		return this.service.updateItem(id, basketId);
+		return this.service.updateItem(id, updateItem);
 
 	}
 
