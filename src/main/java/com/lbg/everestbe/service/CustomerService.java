@@ -66,6 +66,8 @@ public class CustomerService {
 			body.setUsername(newCustomer.getUsername());
 		if (newCustomer.getPassword() != null)
 			body.setPassword(newCustomer.getPassword());
+		if (newCustomer.getItems() != null)
+			body.setItems(newCustomer.getItems());
 
 		Customer updated = this.repo.save(body);
 
