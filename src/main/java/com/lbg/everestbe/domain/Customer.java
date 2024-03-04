@@ -58,16 +58,6 @@ public class Customer {
 		this.password = password;
 	}
 
-	public Customer(String name, String address, String email, String phone, String username, String password) {
-		super();
-		this.name = name;
-		this.address = address;
-		this.email = email;
-		this.phone = phone;
-		this.username = username;
-		this.password = password;
-	}
-
 	public Customer(Integer id) {
 		super();
 		this.id = id;
