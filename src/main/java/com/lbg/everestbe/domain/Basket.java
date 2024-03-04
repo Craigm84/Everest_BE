@@ -26,7 +26,7 @@
 //	}
 //
 //	@JsonManagedReference
-//	@OneToMany(mappedBy = "customer")
+//	@OneToMany(mappedBy = "basket")
 //	private List<Item> items;
 //
 //	public Integer getId() {
@@ -43,11 +43,6 @@
 //
 //	public void setItems(List<Item> items) {
 //		this.items = items;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return "Basket ID=" + id + ", Items=" + items + ", Get Items=" + getItems();
 //	}
 //
 //}

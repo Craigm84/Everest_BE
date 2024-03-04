@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.lbg.everestbe.domain.Customer;
 import com.lbg.everestbe.domain.Item;
 import com.lbg.everestbe.repo.CustomerRepo;
 import com.lbg.everestbe.repo.ItemRepo;
@@ -17,18 +18,42 @@ public class ItemService {
 	private ItemRepo repo;
 	private CustomerRepo customerRepo;
 
-	public ItemService(ItemRepo repo) {
-		super();
-		this.repo = repo;
-	}
-
 	public ResponseEntity<Item> createItem(Item newItem) {
 		Item created = this.repo.save(newItem);
 		return new ResponseEntity<Item>(created, HttpStatus.CREATED);
 	}
 
+	public ItemService(ItemRepo repo, CustomerRepo customerRepo) {
+		super();
+		this.repo = repo;
+		this.customerRepo = customerRepo;
+	}
+
 	public List<Item> getItem() {
 		return this.repo.findAll();
+	}
+
+	public ResponseEntity<Item> addItemToCustomer(int customerId, Item newItem) {
+		Optional<Customer> optionalCustomer = customerRepo.findById(customerId);
+		if (optionalCustomer.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		Customer customer = optionalCustomer.get();
+
+		if (optionalCustomer.isEmpty()) {
+
+			return new ResponseEntity<Item>(HttpStatus.NOT_FOUND);
+		}
+		Optional<Item> found = this.repo.findById(newItem.getId());
+
+		Item item = found.get();
+
+		item.setCustomer(customer);
+		Item savedItem = this.repo.save(item);
+
+		return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+
 	}
 
 	public ResponseEntity<Item> getItem(int id) {

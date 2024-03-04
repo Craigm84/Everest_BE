@@ -33,6 +33,11 @@ public class ItemController {
 		return this.service.createItem(newItem);
 	}
 
+	@PostMapping("/addItem/{customerId}")
+	public ResponseEntity<Item> addItemToCustomer(@PathVariable int customerId, @RequestBody Item newItem) {
+		return this.service.addItemToCustomer(customerId, newItem);
+	}
+
 	@GetMapping("/get")
 	public List<Item> getItem() {
 		return this.service.getItem();

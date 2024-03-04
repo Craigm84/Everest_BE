@@ -50,8 +50,8 @@ public class CustomerController {
 	}
 
 	@PatchMapping("/update/{id}")
-	public ResponseEntity<Customer> updateCustomer(@PathVariable int id, @RequestBody Customer newCustomer) {
-		return this.service.updateCustomer(id, newCustomer);
+	public ResponseEntity<Customer> updateCustomer(@PathVariable int id, @RequestBody Customer updateCustomer) {
+		return this.service.updateCustomer(id, updateCustomer);
 
 	}
 

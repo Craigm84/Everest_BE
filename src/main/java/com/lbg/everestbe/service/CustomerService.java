@@ -35,7 +35,9 @@ public class CustomerService {
 		if (found.isEmpty()) {
 			return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
 		}
+
 		Customer body = found.get();
+
 		return ResponseEntity.ok(body);
 	}
 

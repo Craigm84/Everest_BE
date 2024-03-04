@@ -54,6 +54,8 @@
 //
 //		Basket body = found.get();
 //
+//		body.setItems(newBasket.getItems());
+//
 //		Basket updated = this.repo.save(body);
 //
 //		return ResponseEntity.ok(updated);
