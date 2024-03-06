@@ -22,6 +22,8 @@ public class Item {
 	private Double price;
 	@Column(nullable = false)
 	private Long quantity;
+	@Column(nullable = false)
+	private String description;
 
 	@JsonBackReference
 	@ManyToOne
@@ -31,9 +33,17 @@ public class Item {
 	public Item() {
 	}
 
-	public Item(Integer id, String name, Double price, Long quantity) {
+	public Item(Integer id, String name, Double price, Long quantity, String description) {
 		super();
 		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.description = description;
+	}
+
+	public Item(Integer id, String name, Double price, Long quantity) {
+		super();
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
@@ -132,6 +142,14 @@ public class Item {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

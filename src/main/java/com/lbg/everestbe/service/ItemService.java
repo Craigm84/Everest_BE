@@ -99,6 +99,8 @@ public class ItemService {
 			body.setPrice(newItem.getPrice());
 		if (newItem.getQuantity() != null)
 			body.setQuantity(newItem.getQuantity());
+		if (newItem.getDescription() != null)
+			body.setDescription(newItem.getDescription());
 
 		Item updated = this.repo.save(body);
 
