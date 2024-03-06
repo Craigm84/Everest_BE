@@ -38,6 +38,11 @@ public class ItemController {
 		return this.service.addItemToCustomer(customerId, newItem);
 	}
 
+	@PatchMapping("/addItem/{itemId}")
+	public ResponseEntity<Item> removeItemFromCustomer(@PathVariable int itemId) {
+		return this.service.removeItemFromCustomer(itemId);
+	}
+
 	@GetMapping("/get")
 	public List<Item> getItem() {
 		return this.service.getItem();
