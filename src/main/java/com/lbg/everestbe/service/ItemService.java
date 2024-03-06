@@ -56,6 +56,18 @@ public class ItemService {
 
 	}
 
+	public ResponseEntity<Item> removeItemFromCustomer(int itemId) {
+		Optional<Item> found = this.repo.findById(itemId);
+
+		Item item = found.get();
+
+		item.setCustomer(null);
+		Item savedItem = this.repo.save(item);
+
+		return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+
+	}
+
 	public ResponseEntity<Item> getItem(int id) {
 		Optional<Item> found = this.repo.findById(id);
 
