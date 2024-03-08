@@ -1,10 +1,15 @@
 package com.lbg.everestbe.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -25,6 +30,18 @@ public class Customer {
 	@Column(nullable = false)
 	private String password;
 
+	@JsonManagedReference
+	@OneToMany(mappedBy = "customer")
+	private List<Item> items;
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
 	public Customer() {
 
 	}
@@ -33,16 +50,6 @@ public class Customer {
 			String password) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.address = address;
-		this.email = email;
-		this.phone = phone;
-		this.username = username;
-		this.password = password;
-	}
-
-	public Customer(String name, String address, String email, String phone, String username, String password) {
-		super();
 		this.name = name;
 		this.address = address;
 		this.email = email;

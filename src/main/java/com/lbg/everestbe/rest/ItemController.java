@@ -33,6 +33,16 @@ public class ItemController {
 		return this.service.createItem(newItem);
 	}
 
+	@PostMapping("/addItem/{customerId}")
+	public ResponseEntity<Item> addItemToCustomer(@PathVariable int customerId, @RequestBody Item newItem) {
+		return this.service.addItemToCustomer(customerId, newItem);
+	}
+
+	@PatchMapping("/removeItem/{itemId}")
+	public ResponseEntity<Item> removeItemFromCustomer(@PathVariable int itemId) {
+		return this.service.removeItemFromCustomer(itemId);
+	}
+
 	@GetMapping("/get")
 	public List<Item> getItem() {
 		return this.service.getItem();
@@ -50,9 +60,9 @@ public class ItemController {
 	}
 
 	@PatchMapping("/update/{id}")
-	public ResponseEntity<Item> updateProperty(@PathVariable int id, @RequestBody Item newItem) {
+	public ResponseEntity<Item> updateItem(@PathVariable int id, @RequestBody Item updateItem) {
 
-		return this.service.updateItem(id, newItem);
+		return this.service.updateItem(id, updateItem);
 
 	}
 

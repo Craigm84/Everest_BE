@@ -1,10 +1,14 @@
 package com.lbg.everestbe.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Item {
@@ -18,13 +22,28 @@ public class Item {
 	private Double price;
 	@Column(nullable = false)
 	private Long quantity;
+	@Column(nullable = false)
+	private String description;
+
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
 
 	public Item() {
 	}
 
-	public Item(Integer id, String name, Double price, Long quantity) {
+	public Item(Integer id, String name, Double price, Long quantity, String description) {
 		super();
 		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.description = description;
+	}
+
+	public Item(Integer id, String name, Double price, Long quantity) {
+		super();
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
@@ -85,36 +104,52 @@ public class Item {
 		return "Item: id = " + id + ", name = " + name + ", price = " + price + ", quantity = " + quantity;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Item other = (Item) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (price == null) {
-			if (other.price != null)
-				return false;
-		} else if (!price.equals(other.price))
-			return false;
-		if (quantity == null) {
-			if (other.quantity != null)
-				return false;
-		} else if (!quantity.equals(other.quantity))
-			return false;
-		return true;
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Item other = (Item) obj;
+//		if (id == null) {
+//			if (other.id != null)
+//				return false;
+//		} else if (!id.equals(other.id))
+//			return false;
+//		if (name == null) {
+//			if (other.name != null)
+//				return false;
+//		} else if (!name.equals(other.name))
+//			return false;
+//		if (price == null) {
+//			if (other.price != null)
+//				return false;
+//		} else if (!price.equals(other.price))
+//			return false;
+//		if (quantity == null) {
+//			if (other.quantity != null)
+//				return false;
+//		} else if (!quantity.equals(other.quantity))
+//			return false;
+//		return true;
+//	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

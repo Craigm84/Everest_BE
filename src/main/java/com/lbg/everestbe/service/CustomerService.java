@@ -35,7 +35,9 @@ public class CustomerService {
 		if (found.isEmpty()) {
 			return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
 		}
+
 		Customer body = found.get();
+
 		return ResponseEntity.ok(body);
 	}
 
@@ -66,6 +68,8 @@ public class CustomerService {
 			body.setUsername(newCustomer.getUsername());
 		if (newCustomer.getPassword() != null)
 			body.setPassword(newCustomer.getPassword());
+		if (newCustomer.getItems() != null)
+			body.setItems(newCustomer.getItems());
 
 		Customer updated = this.repo.save(body);
 
