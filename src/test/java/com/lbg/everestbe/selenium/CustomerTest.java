@@ -39,7 +39,7 @@ public class CustomerTest {
 	}
 
 	@Test
-	void testCreate() {
+	void testCreate() throws InterruptedException {
 		this.driver.get("http://localhost:3000/");
 
 		WebElement newCustLink = this.driver.findElement(By.cssSelector(
@@ -69,13 +69,14 @@ public class CustomerTest {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", clickSubmit);
 		clickSubmit.click();
 
-		WebElement display = this.driver.findElement(
-				By.cssSelector("#root > div:nth-child(2) > div:nth-child(3) > div > div > div > div > div"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", display);
-		Assertions.assertEquals(true, display.getText().contains("JHarry2024"));
+		WebElement usernameDisplay = this.wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+				"#root > div:nth-child(2) > div:nth-child(3) > div > div > div:nth-child(2) > div > div > h4")));
 
-		WebElement editCust = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#edit")));
-		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 500);", editCust);
+		Assertions.assertEquals("JHarry2024", usernameDisplay.getText());
+
+		WebElement editCust = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.row > div:nth-child(2) #edit")));
+//		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 500);", editCust);
 		editCust.click();
 
 		WebElement updateUser = this.driver.findElement(By.cssSelector("#username"));
@@ -85,10 +86,11 @@ public class CustomerTest {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", clickUpdate);
 		clickUpdate.click();
 
-		WebElement amendedUser = this.driver.findElement(
-				By.cssSelector("#root > div:nth-child(2) > div:nth-child(3) > div > div > div > div > div"));
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", amendedUser);
-		Assertions.assertEquals(true, amendedUser.getText().contains("JHarry2024.V2"));
+		WebElement amendedUser = this.driver.findElement(By.cssSelector(
+				"#root > div:nth-child(2) > div:nth-child(3) > div > div > div:nth-child(2) > div > div > h4"));
+//		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", amendedUser);
+
+		Assertions.assertEquals("JHarry2024.V2", amendedUser.getText());
 
 	}
 }
