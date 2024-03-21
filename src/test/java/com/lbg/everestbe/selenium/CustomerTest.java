@@ -76,7 +76,9 @@ public class CustomerTest {
 
 		WebElement editCust = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.row > div:nth-child(2) #edit")));
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", editCust);
 //		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 500);", editCust);
+		Thread.sleep(2000);
 		editCust.click();
 
 		WebElement updateUser = this.driver.findElement(By.cssSelector("#username"));
